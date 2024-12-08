@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ post[1] }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>{{ post[1] }}</h1>
+        <a href="{{ url_for('index') }}" class="btn">ホームに戻る</a>
+    </header>
+
+    <main>
+        <article class="post-detail">
+            <p>{{ post[2] }}</p>
+        </article>
+
+        <section class="comments">
+            <h3>コメント</h3>
+            <ul>
+                {% for comment in comments %}
+                    <li>{{ comment[2] }}
+                        <form action="{{ url_for('delete_comment', comment_id=comment[0]) }}" method="post" style="display:inline;">
+                            <input type="hidden" name="post_id" value="{{ post[0] }}">
+                            <button type="submit" class="btn btn-delete">削除</button>
+                        </form>
+                    </li>
+                {% endfor %}
+            </ul>
+
+            <form action="{{ url_for('post_detail', id=post[0]) }}" method="POST">
+                <textarea name="comment" rows="4" required></textarea><br>
+                <button type="submit" class="btn">コメントを投稿</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2024 My Blog. All rights reserved.</p>
+    </footer>
+</body>
+</html>

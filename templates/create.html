@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>新しい投稿</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>新しい投稿を作成</h1>
+        <a href="{{ url_for('index') }}" class="btn">ホームに戻る</a>
+    </header>
+
+    <main>
+        <form action="{{ url_for('create') }}" method="POST">
+            <label for="title">タイトル:</label>
+            <input type="text" id="title" name="title" required><br><br>
+            <label for="content">内容:</label><br>
+            <textarea id="content" name="content" rows="6" required></textarea><br><br>
+            <button type="submit" class="btn">投稿する</button>
+        </form>
+    </main>
+
+    <footer>
+        <p>© 2024 My Blog. All rights reserved.</p>
+    </footer>
+</body>
+</html>
